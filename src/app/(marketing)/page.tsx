@@ -5,6 +5,8 @@ import { ArrowRightIcon } from "lucide-react";
 import { NeonIcon } from "./_icons/Neon";
 import { ClerkIcon } from "./_icons/Clerk";
 import { subscriptionTiersInOrder } from "@/data/subscriptionTiers";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { formatCompactNumber } from "@/lib/formatters";
 
 export default function HomePage () {
   return (
@@ -82,5 +84,26 @@ function PricingCard({
   canCustomizeBanner,
   canRemoveBranding,
 }: typeof subscriptionTiersInOrder[number]) {
-  return name;
+  const isMostPopular = name === "Standard"
+  return <Card>
+    <CardHeader>
+      <div className="text-accent font-semibold mb-8">
+        {name}
+      </div>
+      <CardTitle className="text-xl font-bold">${priceInCents / 100}/month</CardTitle>
+      <CardDescription>
+         {formatCompactNumber(maxNumberOfVisits)} pricing page visits per month
+      </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <SignUpButton>
+          <Button className="text-lg w-full rounded-lg" variant={isMostPopular ? "accent" : "default"}>
+            Get Started
+          </Button>
+        </SignUpButton>
+      </CardContent>
+      <CardFooter>
+        Hello bro
+      </CardFooter>
+  </Card>
 }
