@@ -64,7 +64,7 @@ export default function HomePage () {
       </section>
 
       <section id="pricing" className="px-8 py-16 bg-accent/5">
-        <h2 className="text-4xl text-center text-balance font-semibold">
+        <h2 className="text-4xl text-center text-balance font-semibold mb-3">
           Pricing software which pays for itself 20X over!
         </h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-screen-xl mx-auto">
@@ -104,7 +104,7 @@ function PricingCard({
           </Button>
         </SignUpButton>
       </CardContent>
-      <CardFooter className="flex flex-col gap-4 item-start">
+      <CardFooter className="flex flex-col gap-4 items-start">
         <Feature className="font-bold">{maxNumberOfProducts} {maxNumberOfProducts === 1 ? "product" : "products"}</Feature>
         <Feature>Discount</Feature>
         {canAccessAnalytics && <Feature>Advanced analytics</Feature>}
