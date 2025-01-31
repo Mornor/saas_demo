@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { SignUpButton } from "@clerk/nextjs";
 import Link from "next/link";
-import { ArrowRightIcon } from "lucide-react";
+import { ArrowRightIcon, CheckIcon } from "lucide-react";
 import { NeonIcon } from "./_icons/Neon";
 import { ClerkIcon } from "./_icons/Clerk";
 import { subscriptionTiersInOrder } from "@/data/subscriptionTiers";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatCompactNumber } from "@/lib/formatters";
+import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 export default function HomePage () {
   return (
@@ -102,8 +104,21 @@ function PricingCard({
           </Button>
         </SignUpButton>
       </CardContent>
-      <CardFooter>
-        Hello bro
+      <CardFooter className="flex flex-col gap-4 item-start">
+        <Feature className="font-bold">{maxNumberOfProducts} {maxNumberOfProducts === 1 ? "product" : "products"}</Feature>
+        <Feature>Discount</Feature>
+        {canAccessAnalytics && <Feature>Advanced analytics</Feature>}
+        {canRemoveBranding && <Feature>Remove default branding</Feature>}
+        {canCustomizeBanner && <Feature>Banner customization</Feature>}
       </CardFooter>
   </Card>
+}
+
+function Feature({ children, className }: {children: ReactNode, className?: string } ){
+  return(
+    <div className={cn("flex items-center gap-2", className)}>
+      <CheckIcon className="size-4 stroke-accent bg-accent/25 rounded-full p-0.5"/>
+      <span>{children}</span>
+    </div>
+  )
 }
